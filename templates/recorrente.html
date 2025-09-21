@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gestão de contas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="container">
+        {% include "head.html" %}
+        <main class="container-fluid">
+            <h3 class="border-bottom">Cadastrar Gastos Recorrentes</h3>
+            {% include "flash.html" %}
+            <form action="/recorrentes/" method="post">
+                <div class="row">
+                    <div class="form-label-group p-3">
+                        <label for="descricao">Descrição:</label>
+                        <input id="descricao" name="descricao" class="form-control" maxlength="100" required>
+                    </div>
+                </div>
+                <p class="text-center"><button class="btn btn-primary" type="submit">Cadastrar</button></p>
+            </form>
+            <hr />
+            <h3 class="border-bottom">Listagem de Gastos Recorrentes</h3>
+            {% if recorrentes %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for recorrente in recorrentes %}
+                    <tr>
+                        <th scope="row" class="align-middle">{{ loop.index }}</th>
+                        <td class="align-middle">{{ recorrente.descricao }}</td>
+                        <td class="text-end">
+                            <a class="btn btn-primary" title="Editar" href="/recorrentes/{{ recorrente.id }}/edit"><i class="bi bi-pencil"></i></a>
+                            <a class="btn btn-danger" title="Deletar" href="/recorrentes/{{ recorrente.id }}/delete"><i class="bi bi-trash3"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="text-center text-secondary m-3">Nenhum registro.</p>
+            {% endif %}
+        </main>
+        {% include "footer.html" %}
+    </div>
+    <script src="{{ url_for('static', filename='jscore.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

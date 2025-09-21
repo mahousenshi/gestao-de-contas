@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gestão de contas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="container">
+        {% include "head.html" %}
+        <main class="container-fluid">
+            <h3 class="border-bottom">Ano {{ ano }}</h3>
+            {% include "flash.html" %}
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" href="/{{ ano - 1 }}">&laquo; Ano {{ ano - 1 }}</a></li>
+                <li class="page-item"><a class="page-link" href="/{{ ano + 1 }}">Ano {{ ano + 1 }} &raquo;</a></li>
+            </ul>
+            {% for mes in messes %}
+                {% set mes_atual = loop.index %}
+            <h4>{{ mes_atual|mes_br }}</h4>
+                {% if mes %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Pago em</th>
+                        <th scope="col">Agendado em</th>
+                        <th scope="col">Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entrada in mes %}
+                    <tr>
+                        <th scope="row" class="align-middle">{{ loop.index }}</th>
+                        <td class="align-middle">{{ entrada.descricao }}{% if entrada.comentario %}<span class="text-danger" title="{{ entrada.comentario }}">*</span>{% endif %}</td>
+                        <td class="align-middle">{{ entrada.pago }}</td>
+                        <td class="align-middle">{{ entrada.agendado }}</td>
+                        <td class="align-middle text-end">R$ {{ entrada.valor|dinheiro }}</td>
+                    </tr>
+                        {% if loop.last %}
+                    <tr>
+                        <th colspan="4" scope="row" class="align-middle text-end">Total mensal</th>
+                        <td class="align-middle text-end">R$ {{ soma_messes[mes_atual]|dinheiro }}</td>
+                    </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p class="text-center m-3"><a class="btn btn-primary" href="/{{ ano }}/{{ mes_atual }}">Ver detalhes</a></p>
+                {% else %}
+            <p class="text-center text-secondary m-3">Nenhum registro ainda. <a href="/{{ ano }}/{{ mes_atual }}/recorrentes">Cadastrar gastos recorrentes?</a></p>
+                {% endif %}
+            {% endfor %}
+            <p class="fs-4"><strong>Total anual: R$ {{ soma_anual|dinheiro }}</strong></p>
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" href="/{{ ano - 1 }}">&laquo; Ano {{ ano - 1 }}</a></li>
+                <li class="page-item"><a class="page-link" href="/{{ ano + 1 }}">Ano {{ ano + 1 }} &raquo;</a></li>
+            </ul>
+        </main>
+        {% include "footer.html" %}
+    </div>
+    <script src="{{ url_for('static', filename='jscore.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
