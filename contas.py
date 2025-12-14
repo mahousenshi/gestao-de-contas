@@ -46,7 +46,7 @@ def dinheiro_filter(s):
 
     reais, centavos = s[:-2], s[-2:]
 
-    return f'{centavos[::-1]},{','.join(''.join(bloco) for bloco in batched(reais[::-1], 3))}'[::-1]
+    return f'{centavos[::-1]},{'.'.join(''.join(bloco) for bloco in batched(reais[::-1], 3))}'[::-1]
 
 
 @app.route('/')

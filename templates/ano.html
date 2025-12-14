@@ -36,8 +36,8 @@
                     <tr>
                         <th scope="row" class="align-middle">{{ loop.index }}</th>
                         <td class="align-middle">{{ entrada.descricao }}{% if entrada.comentario %}<span class="text-danger" title="{{ entrada.comentario }}">*</span>{% endif %}</td>
-                        <td class="align-middle">{{ entrada.pago }}</td>
-                        <td class="align-middle">{{ entrada.agendado }}</td>
+                        <td class="align-middle">{{ entrada.pago|data_br }}</td>
+                        <td class="align-middle">{{ entrada.agendado|data_br }}</td>
                         <td class="align-middle text-end">R$ {{ entrada.valor|dinheiro }}</td>
                     </tr>
                         {% if loop.last %}
