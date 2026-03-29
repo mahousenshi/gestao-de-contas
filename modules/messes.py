@@ -19,7 +19,7 @@ def close_db(conn, cursor):
     conn.close()
 
 
-@messes.route('/<int:ano>/<int:mes>/')
+@messes.route('/<int:ano>/<int:mes>/', methods=["GET"])
 def mes_show(ano, mes):
     if ano <= 0:
         flash('Ano invalido!', 'danger')

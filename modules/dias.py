@@ -28,7 +28,7 @@ def close_db(conn, cursor):
     conn.close()
 
 
-@dias.route('/<int:ano>/<int:mes>/<int:dia>/')
+@dias.route('/<int:ano>/<int:mes>/<int:dia>/', methods=["GET"])
 def dia_show(ano, mes, dia):
     if ano <= 0:
         flash('Ano inválido!', 'danger')
