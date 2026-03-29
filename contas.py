@@ -1,5 +1,4 @@
 from datetime import date
-from itertools import batched
 from flask import Flask, redirect, url_for
 
 from modules.anos import anos
