@@ -29,20 +29,20 @@ git clone https://github.com/mahousenshi/gestao-de-contas.git
 cd gestao-de-contas
 ```
 
-2. **Instalar as dependências:**
-
-Antes de instalar as dependecia não se esqueça de criar um env para o projeto
+2. **Criar um virtual envoiriment:** (Opicional)
 
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
+3. **Instalar as dependências:**
+
 ```bash
 pip install -r requirements.txt
 ```
 
-3. **Rodar o servidor:**
+4. **Rodar o servidor:**
 
 ```Bash
 python contas.py
@@ -56,7 +56,7 @@ Para uma instalação com persistência a cada reinicio se recomenda usar o **gu
 
 1. **Adiconar um usuario** 
 
-Este usario pode ser qualquer um na verdade, pode ser o usario atual.
+Este usario pode ser qualquer um, o ideal que seja um diferente do usario atual.
 
 ```Bash
 sudo adduser flask_user
@@ -64,7 +64,7 @@ sudo adduser flask_user
 
 2. **Instalar o projeto**
 
-Instale o projeto como dado acima e adicione o **gunicorn**
+Instale o projeto como dado acima e instale o **gunicorn**
 
 ```bash
 pip install flask gunicorn
@@ -118,5 +118,4 @@ Acesse no navegador: http://127.0.0.1:5000
 
 Este projeto foi desenvolvido para uso pessoal e local.
 
-    ⚠️ Importante ⚠️: O sistema não possui camadas nativas de autenticação ou criptografia de dados. Tenha cautela ao inserir informações extremamente sensíveis e evite hospedar a aplicação em ambientes públicos ou servidores abertos sem implementar as devidas proteções.
-    
+⚠️ Importante ⚠️: O sistema não possui camadas nativas de autenticação ou criptografia de dados. Tenha cautela ao inserir informações extremamente sensíveis e evite hospedar a aplicação em ambientes públicos ou servidores abertos sem implementar as devidas proteções.
