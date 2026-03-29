@@ -1,5 +1,6 @@
 from datetime import date
 from flask import Flask, redirect, url_for
+from os import path
 
 from modules.anos import anos
 from modules.dias import dias
@@ -65,6 +66,12 @@ def index():
 
 
 if __name__ == '__main__':
+    conn = sqlite3.connect('entradas.db')
+    c = conn.cursor()
+
+    with open('schema.sql', 'r') as f:
+        c.executescript(f.read())
+
     app.jinja_env.auto_reload = True
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0

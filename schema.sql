@@ -1,0 +1,20 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "entradas" (
+	"id"	INTEGER UNIQUE,
+	"ano"	INTEGER NOT NULL,
+	"mes"	INTEGER NOT NULL,
+	"descricao"	TEXT NOT NULL,
+	"pago"	TEXT,
+	"agendado"	TEXT,
+	"valor"	TEXT,
+	"comentario"	TEXT,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+
+CREATE TABLE IF NOT EXISTS "recorrentes" (
+	"id"	INTEGER UNIQUE,
+	"descricao"	TEXT NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+
+COMMIT;
