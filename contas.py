@@ -54,7 +54,7 @@ def dinheiro_filter(s):
         temp = '0' + reais
         corte = 1
 
-    return f'{",".join(temp[i:i+3] for i in range(0, len(temp), 3))[corte:]},{centavos}'
+    return f'{".".join(temp[i:i+3] for i in range(0, len(temp), 3))[corte:]},{centavos}'
 
 
 @app.route('/')
