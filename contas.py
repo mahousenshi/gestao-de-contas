@@ -1,6 +1,7 @@
+import sqlite3
+
 from datetime import date
 from flask import Flask, redirect, url_for
-from os import path
 
 from modules.anos import anos
 from modules.dias import dias
@@ -53,6 +54,8 @@ def dinheiro_filter(s):
     elif len(reais) % 3 == 2:
         temp = '0' + reais
         corte = 1
+    else:
+        temp = reais
 
     return f'{".".join(temp[i:i+3] for i in range(0, len(temp), 3))[corte:]},{centavos}'
 
